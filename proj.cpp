@@ -30,12 +30,26 @@ void printList(Pojazd *n)
 
 /**
  * @brief list all files in directory
- *  
+ *  entry.path() returns a path of file -> then we get only the filename with filename() -> it will return filename with quotes "" so we remove those with .string()
  */
 void listFiles(std::string path)
 {
   for (const auto &entry : fs::directory_iterator(path))
-    std::cout << entry.path() << std::endl;
+  {
+    std::string line;
+    std::ifstream myfile(entry.path()); //"pojazdy/" + entry.path().filename().string());
+    if (myfile.is_open())
+    {
+      while (getline(myfile, line))
+      {
+        std::cout << line << '\n';
+      }
+      myfile.close();
+    }
+
+    else
+      std::cout << "Unable to open file";
+  }
 }
 
 int main()
