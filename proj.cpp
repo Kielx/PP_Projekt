@@ -60,7 +60,7 @@ void printList(User *n)
   std::cout << "Lista uzytkownikow: " << std::endl;
   while (n != NULL)
   {
-    std::cout << n->imie << " " << n->nazwisko << " " << n->numerRejPojazdu << " " << n->pojazd->nazwa << std::endl;
+    std::cout << n->imie << " " << n->nazwisko << " " << n->numerRejPojazdu << " " << n->pojazd->nazwa << " " << n->pojazd->rok << std::endl;
     n = n->next;
   }
 }
@@ -205,6 +205,7 @@ int main()
 {
   Pojazd *headPojazd = NULL;
   User *headUser = NULL;
+  addUser();
   synchronizuj("pojazdy/", &headPojazd);
   synchronizujUsers("users/", &headUser);
   linkUsersToCars(&headUser, &headPojazd);
