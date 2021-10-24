@@ -5,10 +5,6 @@
 
 namespace fs = std::filesystem;
 
-/**
- * @brief Struktura obiektu bazowego
- * 
- */
 class Pojazd
 {
 public:
@@ -28,23 +24,29 @@ public:
   Pojazd *pojazd;
 };
 
-/* Given a reference (pointer to pointer)
-to the head of a list and an int,
-inserts a new node on the front of the list. */
+/**
+ * @brief Dodaje element na poczatku listy
+ * 
+ * @param head_ref - wskaznik na poczatek listy
+ * @param pojazd - wskaznik nowego element
+ */
 void push(Pojazd **head_ref, Pojazd *pojazd)
 {
   pojazd->next = (*head_ref);
   (*head_ref) = pojazd;
 }
 
-void pushUser(User **head_ref, User *user)
+void push(User **head_ref, User *user)
 {
   user->next = (*head_ref);
   (*head_ref) = user;
 }
 
-// This function prints contents of linked list starting from
-// the given node
+/**
+ * @brief Funkcja wypisuje zawartośc listy
+ * 
+ * @param n - wskaznik na poczatek listy
+ */
 void printList(Pojazd *n)
 {
   std::cout << "Lista pojazdow: " << std::endl;
@@ -65,6 +67,10 @@ void printList(User *n)
   }
 }
 
+/**
+ * @brief Funkcja dodaje pojazd i tworzy nowy plik z danymi
+ * 
+ */
 void addCar()
 {
   Pojazd *new_node = new Pojazd;
@@ -82,6 +88,10 @@ void addCar()
        << new_node->rok << std::endl;
 }
 
+/**
+ * @brief Funkcja dodaje uzytkownika i tworzy nowy plik z danymi
+ * 
+ */
 void addUser()
 {
   User *new_node = new User;
@@ -100,7 +110,7 @@ void addUser()
 }
 
 /**
- * @brief list all files in directory
+ * @brief Wypisuje liste plikow w folderze podanym jako path
  *  entry.path() returns a path of file -> then we get only the filename with filename() -> it will return filename with quotes "" so we remove those with .string()
  */
 void listFiles(std::string path)
@@ -123,6 +133,12 @@ void listFiles(std::string path)
   }
 }
 
+/**
+ * @brief Funkcja tworzy nowe obiekty na podstawie plikow z pojazdami a nastepnie dopisuje je do listy
+ * 
+ * @param path - sciezka do folderu z pojazdami
+ * @param head - wskaznik na poczatek listy pojazdow
+ */
 void synchronizuj(std::string path, Pojazd **head)
 {
   std::array<std::string, 3> dane;
@@ -130,7 +146,7 @@ void synchronizuj(std::string path, Pojazd **head)
   {
 
     std::string line;
-    std::ifstream myfile(entry.path()); //"pojazdy/" + entry.path().filename().string());
+    std::ifstream myfile(entry.path());
     if (myfile.is_open())
     {
       for (int i = 0; i < 3; i++)
@@ -151,8 +167,14 @@ void synchronizuj(std::string path, Pojazd **head)
     push(head, nowy);
   }
 }
+/**
+ * @brief Funkcja tworzy nowe obiekty na podstawie plikow z uzytkownikami a nastepnie dopisuje je do listy
+ * 
+ * @param path - sciezka do folderu z uzytkownika
+ * @param head - wskaznik na poczatek listy uzytkownikow
+ */
 
-void synchronizujUsers(std::string path, User **head)
+void synchronizuj(std::string path, User **head)
 {
   std::array<std::string, 3> dane;
   for (const auto &entry : fs::directory_iterator(path))
@@ -177,10 +199,16 @@ void synchronizujUsers(std::string path, User **head)
     nowy->imie = dane.at(0);
     nowy->nazwisko = dane.at(1);
     nowy->numerRejPojazdu = dane.at(2);
-    pushUser(head, nowy);
+    push(head, nowy);
   }
 }
 
+/**
+ * @brief Funkcja laczy obiekty z listy uzytkownikow z lista pojazdow
+ * 
+ * @param head - wskaznik na poczatek listy uzytkownikow
+ * @param head2 - wskaznik na poczatek listy pojazdow
+ */
 void linkUsersToCars(User **head, Pojazd **head2)
 {
   User *tmp = *head;
@@ -205,9 +233,9 @@ int main()
 {
   Pojazd *headPojazd = NULL;
   User *headUser = NULL;
-  addUser();
+
   synchronizuj("pojazdy/", &headPojazd);
-  synchronizujUsers("users/", &headUser);
+  synchronizuj("users/", &headUser);
   linkUsersToCars(&headUser, &headPojazd);
   printList(headUser);
   //listFiles("pojazdy");
