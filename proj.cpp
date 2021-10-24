@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <filesystem>
+#include <array>
 
 namespace fs = std::filesystem;
 
@@ -15,6 +16,16 @@ public:
   std::string nazwa;
   int rok;
   Pojazd *next;
+};
+
+class User
+{
+public:
+  std::string imie;
+  std::string nazwisko;
+  User *next;
+  std::string numerRejPojazdu;
+  Pojazd *pojazd;
 };
 
 // This function prints contents of linked list starting from
@@ -52,6 +63,38 @@ void listFiles(std::string path)
   }
 }
 
+void synchronizuj(std::string path, User *user)
+{
+  std::array<std::string, 3> dane;
+  for (const auto &entry : fs::directory_iterator(path))
+  {
+    if (entry.path().stem().string() == user->numerRejPojazdu)
+    {
+      std::string line;
+      std::ifstream myfile(entry.path()); //"pojazdy/" + entry.path().filename().string());
+      if (myfile.is_open())
+      {
+        for (int i = 0; i < 3; i++)
+        {
+          getline(myfile, line);
+          dane.at(i) = line;
+        }
+        myfile.close();
+      }
+      else
+        std::cout << "Unable to open file";
+
+      Pojazd *nowy = NULL;
+      nowy = new Pojazd();
+      nowy->numerRej = dane.at(0);
+      nowy->nazwa = dane.at(1);
+      std::cout << dane.at(2) << std::endl;
+      nowy->rok = std::stoi(dane.at(2));
+      user->pojazd = nowy;
+    }
+  }
+}
+
 int main()
 {
   Pojazd *head = NULL;
@@ -72,19 +115,27 @@ int main()
   third->nazwa = "Mercedes";
   third->rok = 2015;
   third->next = NULL;
+  User *test = NULL;
+  test = new User();
+  test->imie = "Jan";
+  test->nazwisko = "Kowalski";
+  test->numerRejPojazdu = "ABC-123";
+  test->pojazd = NULL;
   //head->next = second; // Link first node with second
 
-  printList(head);
+  //printList(head);
   while (head != NULL)
   {
     Pojazd *temp = head;
     std::ofstream plik;
     plik.open("pojazdy/" + head->numerRej + ".txt");
-    plik << head->numerRej << " " << head->nazwa << " " << head->rok << std::endl;
+    plik << head->numerRej << std::endl
+         << head->nazwa << std::endl
+         << head->rok << std::endl;
     head = head->next;
   }
 
-  listFiles("pojazdy/");
-
+  //listFiles("pojazdy/");
+  synchronizuj("pojazdy/", test);
   return 0;
 }
