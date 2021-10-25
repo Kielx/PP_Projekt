@@ -12,6 +12,7 @@ public:
   std::string nazwa;
   int rok;
   Pojazd *next;
+  std::string opis;
 };
 
 class User
@@ -107,6 +108,25 @@ void addUser()
   plik << new_node->imie << std::endl
        << new_node->nazwisko << std::endl
        << new_node->numerRejPojazdu << std::endl;
+}
+void addOpis()
+{
+  std::string numerRej;
+  std::string opis;
+  std::string podpis;
+  std::cout << "Podaj numer rejestracyjny pojazdu: ";
+  std::cin >> numerRej;
+  std::cout << "Podaj opis: ";
+  std::getline(std::cin >> std::ws, opis);
+  std::cout << "Podaj podpis: ";
+  std::getline(std::cin >> std::ws, podpis);
+  std::ofstream plik;
+  plik.open("pojazdy/" + numerRej + ".txt", std::ios::app);
+  plik
+      << "-" << std::endl
+      << opis << std::endl
+      << podpis << std::endl
+      << "---" << std::endl;
 }
 
 /**
@@ -233,7 +253,7 @@ int main()
 {
   Pojazd *headPojazd = NULL;
   User *headUser = NULL;
-
+  addOpis();
   synchronizuj("pojazdy/", &headPojazd);
   synchronizuj("users/", &headUser);
   linkUsersToCars(&headUser, &headPojazd);
