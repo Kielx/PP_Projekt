@@ -329,6 +329,7 @@ int main()
     std::cout << "2: Wypisz listę użytkowników\n";
     std::cout << "3: Dodaj pojazd\n";
     std::cout << "4: Dodaj użytkownika\n";
+    std::cout << "5: Dodaj opis do pojazdu\n";
     std::cout << "0: Opusc program\n";
     std::cin >> wybor;
 
@@ -367,6 +368,15 @@ int main()
       std::cout << COLOR_BOLDBLUE << "Wybrales 4 - Dodaj użytkownika" << COLOR_RESET
                 << std::endl;
       addUser(&headUser);
+      break;
+    }
+    case 5:
+    {
+      std::cout << CLEARSCREEN;
+      int ile;
+      std::cout << COLOR_BOLDBLUE << "Wybrales 5 - Dodaj opis" << COLOR_RESET
+                << std::endl;
+      addOpis();
       break;
     }
     case 0:
