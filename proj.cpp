@@ -121,6 +121,7 @@ void printList(User *n)
  * 
  * @param n - wskaznik na poczatek listy
  */
+//TODO: Change input to getline to avoid bugs with spaces
 void addCar(Pojazd **head_ref)
 {
   Pojazd *new_node = new Pojazd;
