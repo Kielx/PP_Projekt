@@ -1,6 +1,6 @@
 #ifndef LOGIN
 #define LOGIN
 
-void hello();
+bool login();
 
 #endif

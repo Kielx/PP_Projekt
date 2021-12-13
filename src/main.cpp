@@ -204,6 +204,7 @@ int main()
   synchronizuj("pojazdy/", &headPojazd);
   synchronizuj("users/", &headUser);
   linkUsersToCars(&headUser, &headPojazd);
-  menu(headPojazd, headUser);
+  // menu(headPojazd, headUser);
+  std::cout << login() << std::endl;
   return 0;
 }
