@@ -27,7 +27,7 @@ void printList(User *n);
 /**
  * @brief Funkcja dodaje pojazd i tworzy nowy plik z danymi
  *
- * @param n - wskaznik na poczatek listy
+ * @param head_ref - wskaznik na poczatek listy
  */
 void addCar(Pojazd **head_ref);
 
