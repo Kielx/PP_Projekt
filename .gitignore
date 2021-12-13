@@ -1,1 +1,4 @@
 *.out
+*.o
+*.obj
+/doc
