@@ -3,6 +3,8 @@
 #include <string>
 
 #include "colors.h"
+#include "encrypt.h"
+
 /**
  * @brief Funkcja ktora weryfikuje poprawnosc danych logowania
  *
@@ -14,14 +16,15 @@
 bool authenticate(const std::string &username, const std::string &password)
 {
   std::ifstream file("authdata.txt");
-  std::string fusername, fpassword;
+  std::string fusername, fpassword, ile;
 
   while (file)
   {
     std::getline(file, fusername, ';'); // use ; as delimiter
+    std::getline(file, ile, ';');       // use ; as delimiter
     std::getline(file, fpassword);      // use line end as delimiter
     // remember - delimiter readed from input but not added to output
-    if (fusername == username && fpassword == password)
+    if (fusername == encrypt(username, std::stoi(ile)) && fpassword == encrypt(password, std::stoi(ile)))
       return true;
   }
   return false;

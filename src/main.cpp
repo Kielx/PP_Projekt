@@ -7,6 +7,7 @@
 #include "pojazd.h"
 #include "user.h"
 #include "menu.h"
+#include "addAdmin.h"
 
 namespace fs = std::filesystem;
 
@@ -204,7 +205,13 @@ int main()
   synchronizuj("pojazdy/", &headPojazd);
   synchronizuj("users/", &headUser);
   linkUsersToCars(&headUser, &headPojazd);
-  // menu(headPojazd, headUser);
-  std::cout << login() << std::endl;
+  if (login())
+  {
+    menu(headPojazd, headUser);
+  }
+  else
+  {
+    std::cout << "Niepoprawne dane logowania" << std::endl;
+  }
   return 0;
 }
