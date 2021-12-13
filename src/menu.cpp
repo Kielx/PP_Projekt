@@ -47,13 +47,9 @@
 #define CLEARSCREEN "\033[H\033[2J\033[3J"
 /**@}*/
 
-void menu()
+void menu(Pojazd *headPojazd, User *headUser)
 {
-  Pojazd *headPojazd = NULL;
-  User *headUser = NULL;
-  synchronizuj("pojazdy/", &headPojazd);
-  synchronizuj("users/", &headUser);
-  linkUsersToCars(&headUser, &headPojazd);
+
   int wybor = 0;
 
   std::string kontynuuj = "T";

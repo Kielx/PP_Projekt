@@ -199,7 +199,11 @@ void linkUsersToCars(User **head, Pojazd **head2)
 
 int main()
 {
-
-  menu();
+  Pojazd *headPojazd = NULL;
+  User *headUser = NULL;
+  synchronizuj("pojazdy/", &headPojazd);
+  synchronizuj("users/", &headUser);
+  linkUsersToCars(&headUser, &headPojazd);
+  menu(headPojazd, headUser);
   return 0;
 }
