@@ -3,6 +3,10 @@
 
 #include <string>
 
+/**
+ * @brief Klasa uzytkownika
+ *
+ */
 class User
 {
 public:

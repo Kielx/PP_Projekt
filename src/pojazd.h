@@ -3,6 +3,10 @@
 
 #include <string>
 
+/**
+ * @brief Klasa pojazdu
+ *
+ */
 class Pojazd
 {
 public:
