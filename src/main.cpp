@@ -1,13 +1,30 @@
 #include <iostream>
 #include <fstream>
 #include <filesystem>
-#include <array>
+#include <string.h>
 
 #include "login.h"
 #include "pojazd.h"
 #include "user.h"
 #include "menu.h"
 #include "addAdmin.h"
+
+// Sprawdza z jakiej platformy korzysta uzytkownik
+#if defined(_WIN32)
+#define PLATFORM_NAME "windows" // Windows
+#elif defined(_WIN64)
+#define PLATFORM_NAME "windows" // Windows
+#elif defined(__linux__)
+#define PLATFORM_NAME "linux" // Debian, Ubuntu, Gentoo, Fedora, openSUSE,
+#else
+#define PLATFORM_NAME NULL
+#endif
+
+// Zwraca nazwe platformy jesli jest podana, w przeciwnym wypadku pusta
+const char *get_platform_name()
+{
+  return (PLATFORM_NAME == NULL) ? "" : PLATFORM_NAME;
+}
 
 namespace fs = std::filesystem;
 
@@ -277,12 +294,24 @@ int main()
 {
   Pojazd *headPojazd = NULL;
   User *headUser = NULL;
-  synchronizuj("pojazdy/", &headPojazd);
-  synchronizuj("users/", &headUser);
-  linkUsersToCars(&headUser, &headPojazd);
+
   if (login())
   {
-    menu(headPojazd, headUser);
+
+    if (strcmp(get_platform_name(), "linux") == 0 || strcmp(get_platform_name(), "windows") == 0)
+    {
+      system("tar -xzf data.tar.gz");
+      synchronizuj("pojazdy/", &headPojazd);
+      synchronizuj("users/", &headUser);
+      linkUsersToCars(&headUser, &headPojazd);
+      menu(headPojazd, headUser);
+      system("tar -czf data.tar.gz users pojazdy");
+      system("rm -r users pojazdy");
+    }
+    else
+    {
+      std::cout << "Twój system nie obsługuje tej aplikacji" << std::endl;
+    }
   }
   else
   {
