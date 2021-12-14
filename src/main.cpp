@@ -50,7 +50,7 @@ void addCar(Pojazd **head_ref)
   std::cout << "Podaj numer rejestracyjny: ";
   std::cin >> new_node->numerRej;
   std::cout << "Podaj nazwe: ";
-  std::cin >> new_node->nazwa;
+  std::getline(std::cin >> std::ws, new_node->nazwa);
   std::cout << "Podaj rok: ";
   std::cin >> new_node->rok;
   new_node->next = NULL;
