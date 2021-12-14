@@ -4,6 +4,8 @@ TODO:
 - Display owner data in car list
 - Check how program responds to different data
 - Add mileage field to car
+- Decompress archive with cars and users on start
+- Compress archive with cars and users on exit
 
 
 # ❕ Baza danych warsztatu samochodowego {#mainpage}
