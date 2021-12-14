@@ -1,3 +1,11 @@
+TODO:
+
+- Clean up display functions to display data in some nicer way
+- Display owner data in car list
+- Check how program responds to different data
+- Add mileage field to car
+
+
 # ❕ Baza danych warsztatu samochodowego {#mainpage}
 
 ## ❔ O projekcie
