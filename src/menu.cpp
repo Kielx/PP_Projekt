@@ -26,6 +26,7 @@ void menu(Pojazd *headPojazd, User *headUser)
     std::cout << "3: Dodaj pojazd\n";
     std::cout << "4: Dodaj użytkownika\n";
     std::cout << "5: Dodaj opis do pojazdu\n";
+    std::cout << "6: Wyswietl dane pojazdu\n";
     std::cout << "0: Opusc program\n";
     std::cin >> wybor;
 
@@ -70,6 +71,14 @@ void menu(Pojazd *headPojazd, User *headUser)
       std::cout << COLOR_BOLDBLUE << "Wybrales 5 - Dodaj opis" << COLOR_RESET
                 << std::endl;
       addOpis();
+      break;
+    }
+    case 6:
+    {
+      std::cout << CLEARSCREEN;
+      std::cout << COLOR_BOLDBLUE << "Wybrales 6 - Wyswietl dane pojazdu" << COLOR_RESET
+                << std::endl;
+      wyswietlDanePojazdu(headPojazd);
       break;
     }
     case 0:

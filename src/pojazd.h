@@ -3,6 +3,8 @@
 
 #include <string>
 
+class User;
+
 /**
  * @brief Klasa pojazdu
  *
@@ -13,8 +15,9 @@ public:
   std::string numerRej;
   std::string nazwa;
   int rok;
-  Pojazd *next;
+  User *user;
   std::string opis;
+  Pojazd *next;
 };
 
 #endif

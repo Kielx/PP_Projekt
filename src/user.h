@@ -12,8 +12,8 @@ class User
 public:
   std::string imie;
   std::string nazwisko;
-  User *next;
   std::string numerRejPojazdu;
+  User *next;
   Pojazd *pojazd;
 };
 

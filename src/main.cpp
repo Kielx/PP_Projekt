@@ -189,6 +189,7 @@ void linkUsersToCars(User **head, Pojazd **head2)
       if (tmp->numerRejPojazdu == tmp2->numerRej)
       {
         tmp->pojazd = tmp2;
+        tmp2->user = tmp;
         break;
       }
       tmp2 = tmp2->next;
@@ -196,6 +197,80 @@ void linkUsersToCars(User **head, Pojazd **head2)
     tmp = tmp->next;
     tmp2 = *head2;
   }
+}
+
+void wyswietlDanePojazdu(Pojazd *head)
+{
+  Pojazd *tmp = head;
+  std::string numerRejestracyjny;
+  std::cout << "Podaj numer rejestracyjny pojazdu, którego dane chcesz wyświetlić: ";
+  std::cin >> numerRejestracyjny;
+  // Sprawdzamy czy lista jest pusta - jesli tak to podajemy odpowiedni komunikat
+  if (tmp == NULL)
+  {
+    std::cout << "Lista pojazdów jest pusta" << std::endl;
+  }
+  // Jesli lista nie jest pusta to wykonujemy petle, ktora przechodzi przez cala liste
+  while (tmp != NULL)
+  {
+    // Jesli numer rejestracyjny znajduje sie w liscie to wyswietlamy dane
+    if (tmp->numerRej == numerRejestracyjny)
+    {
+      int licznik = 0;
+      std::cout << "Numer rejestracyjny: " << tmp->numerRej << std::endl
+                << "Nazwa: " << tmp->nazwa << std::endl
+                << "Rok: " << tmp->rok << std::endl;
+      // Sprawdzamy czy do pojazdu dopisany jest wlasciciel - jesli tak to wyswietlamy dane
+      // Jesli nie to nie wyswietlamy
+      // Bez tego warunku w przypadku braku wlasciciela wyswietlil by sie blad
+      if (tmp->user)
+      {
+        std::cout << "Właściciel: " << tmp->user->imie << " " << tmp->user->nazwisko << std::endl;
+      }
+      // Otwieramy plik z danymi pojazdu
+      std::ifstream plik;
+      plik.open("pojazdy/" + numerRejestracyjny + ".txt");
+      if (plik.is_open())
+      {
+        std::string line;
+        // Dopóki nie napotkamy końca pliku iterujemy po kazdej linii
+        while (getline(plik, line))
+        {
+          // Jeśli linia to "-" oznacza to, że pojazd ma opis
+          if (line == "-")
+          {
+            // Zwiekszamy licznik by wiedziec ktory wpis w pliku jest opisem
+            licznik++;
+            std::cout << licznik << " Wpis:" << std::endl;
+            while (getline(plik, line))
+            {
+              // Jesli doszlismy do konca oznaczonego "---" to znaczy, ze konczymy wczytywanie opisu
+              if (line == "---")
+              {
+                break;
+              }
+              // Jesli nie to wyswietlamy linie opisu
+              std::cout << line << std::endl;
+            }
+          }
+        }
+        // Jesli licznik jest rowny 0 to pojazd nie ma opisu
+        if (licznik == 0)
+        {
+          std::cout << "Nie dodano jeszcze żadnych wpisów dla tego pojazdu" << std::endl;
+        }
+        // Zamykamy plik
+        plik.close();
+      }
+      else
+        std::cout << "Nie udało się otworzyć pliku" << std::endl;
+      return;
+    }
+    // Przechodzimy kolejno przez kazdy element listy do momentu napotkania numeru rejestracyjnego
+    tmp = tmp->next;
+  }
+  // Jesli nie znaleziono pojazdu w liscie to wyswietlamy odpowiedni komunikat
+  std::cout << "Podanego pojazdu nie znaleziono na liście" << std::endl;
 }
 
 int main()

@@ -82,4 +82,12 @@ void synchronizuj(std::string path, User **head);
  */
 void linkUsersToCars(User **head, Pojazd **head2);
 
+/**
+ * @brief Funkcja ktora wypisuje informacje o pojezdzie
+ *
+ * @param head - wskaznik na poczatek listy pojazdow
+ *
+ */
+void wyswietlDanePojazdu(Pojazd *head);
+
 #endif
