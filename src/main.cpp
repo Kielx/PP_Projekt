@@ -8,6 +8,7 @@
 #include "user.h"
 #include "menu.h"
 #include "addAdmin.h"
+#include "colors.h"
 
 // Sprawdza z jakiej platformy korzysta uzytkownik
 #if defined(_WIN32)
@@ -42,20 +43,39 @@ void push(User **head_ref, User *user)
 
 void printList(Pojazd *n)
 {
-  std::cout << "Lista pojazdow: " << std::endl;
+  int licznik = 0;
+  std::cout << std::endl;
+  std::cout << COLOR_BOLDYELLOW << "\t Lista pojazdow: " << COLOR_RESET << std::endl;
+  std::cout << std::endl;
   while (n != NULL)
   {
-    std::cout << n->numerRej << " " << n->nazwa << " " << n->rok << std::endl;
+    licznik++;
+    std::cout << COLOR_BOLDWHITE "\t\t" << licznik << COLOR_RESET << std::endl;
+    std::cout << "Numer rejestracyjny: " << COLOR_BOLDWHITE << n->numerRej << COLOR_RESET << std::endl;
+    std::cout << "Typ: " << COLOR_BOLDWHITE << n->nazwa << COLOR_RESET << std::endl;
+    std::cout << "Rok produkcji: " << COLOR_BOLDWHITE << n->rok << COLOR_RESET << std::endl;
+    n->user ? std::cout << "Właściciel: " << COLOR_BOLDWHITE << n->user->imie << " " << n->user->nazwisko << COLOR_RESET << std::endl : std::cout << "Właściciel: " << COLOR_BOLDRED << "Brak" << COLOR_RESET << std::endl;
+    std::cout << std::endl;
     n = n->next;
   }
 }
 
 void printList(User *n)
 {
-  std::cout << "Lista uzytkownikow: " << std::endl;
+  int licznik = 0;
+  std::cout << std::endl;
+  std::cout << COLOR_BOLDYELLOW << "\t Lista Użytkowników: " << COLOR_RESET << std::endl;
+  std::cout << std::endl;
   while (n != NULL)
   {
-    std::cout << n->imie << " " << n->nazwisko << " " << n->numerRejPojazdu << " " << n->pojazd->nazwa << " " << n->pojazd->rok << std::endl;
+    licznik++;
+    std::cout << COLOR_BOLDWHITE "\t\t" << licznik << COLOR_RESET << std::endl;
+    std::cout << "Imie i nazwisko: " << COLOR_BOLDWHITE << n->imie << " " << n->nazwisko << COLOR_RESET << std::endl;
+    std::cout << "Numer rejestracyjny pojazdu: " << COLOR_BOLDWHITE << n->numerRejPojazdu << COLOR_RESET << std::endl;
+    std::cout << "Typ pojazdu: " << COLOR_BOLDWHITE << n->pojazd->nazwa << COLOR_RESET << std::endl;
+    std::cout << "Rok produkcji: " << COLOR_BOLDWHITE << n->pojazd->rok << COLOR_RESET << std::endl;
+
+    std::cout << std::endl;
     n = n->next;
   }
 }
@@ -171,7 +191,6 @@ void synchronizuj(std::string path, User **head)
   std::array<std::string, 3> dane;
   for (const auto &entry : fs::directory_iterator(path))
   {
-
     std::string line;
     std::ifstream myfile(entry.path());
     if (myfile.is_open())
