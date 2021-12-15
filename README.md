@@ -1,14 +1,16 @@
+# ❕ Baza danych warsztatu samochodowego {#mainpage}
+
 TODO:
 
-- Clean up display functions to display data in some nicer way
-- Display owner data in car list
+- ~~Clean up display functions to display data in some nicer way~~
+- ~~Display owner data in car list~~
 - Check how program responds to different data
 - Add mileage field to car
-- Decompress archive with cars and users on start
-- Compress archive with cars and users on exit
+- ~~Decompress archive with cars and users on start~~
+- ~~Compress archive with cars and users on exit~~
+- Add getline for better input
+- Add remove option
 
-
-# ❕ Baza danych warsztatu samochodowego {#mainpage}
 
 ## ❔ O projekcie
 
@@ -17,10 +19,12 @@ Struktury te wczytywane są na podstawie danych z plików w folderach pojazdy i 
 
 ### ⚙️ Funkcje Programu
 
-Program jest wyposażony w rozmaite funkcje związane z algorytmami sortującymi m.in: <br>
-☑️ - Sortowanie tablicy losowych liczb przy pomocy funkcji Quicksort i Timsort <br>
-☑️ - Porownanie czasowe i złożoności obliczeniowej funkcji dla określonych ilości losowych danych <br>
-☑️ - Eksport danych do plików .csv <br>
+Program jest wyposażony w rozmaite funkcje związane z obsługa bazy danych: <br>
+☑️ - Pozwala na podstawowe operacje na bazie danych - dodawanie, usuwanie, wyswietlanie i aktualizowanie danych <br>
+☑️ - Dostęp do programu jest ograniczony dla zalogowanych użytkowników, których dane są zaszyfrowane <br>
+☑️ - Zapisuje i odczytuje dane z plikow <br>
+☑️ - Synchronizuje odczytane dane <br>
+☑️ - Przechowuje baze danych w archiwum tar.gz poprzez odczyt i zapis na poczatku i końcu programu<br>
 <br>
 
 ![Przyklad dzialania programu](../../img/Demo1.gif)
@@ -69,7 +73,7 @@ warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 Przechodzimy do folderu gdzie zlokalizowany jest program np.:
 
 ```console
-cd ~/mojeUlubioneSortowania/
+cd ~/mojaBaza/
 ```
 
 Kompilujemy program (w folderze zawarty jest Makefile, ktory kompiluje i laczy wszystkie skladowe)
@@ -96,7 +100,7 @@ Najpierw należy zainstalować program Doxygen zgodnie z instrukcjami: <https://
 Przechodzimy do folderu gdzie zlokalizowany jest program np.:
 
 ```console
-cd ~/mojeUlubioneSortowania/
+cd ~/mojaBaza/
 ```
 
 Znajduje sie w nim plik z instrukcja Doxyfile. By go uruchomic wystarczy skorzystac z:
@@ -126,17 +130,6 @@ make clean
 
 <hr>
 
-## 🛑 Ograniczenia
+## 👨‍🎓 Autorzy
 
-Z uwagi na złożoność samego algorytmu Timsort:
-
-- 3000+ linii kodu w implementacji dla Python - <http://svn.python.org/projects/python/trunk/Objects/listobject.c>
-- 800 linii kodu w implementacji dla C++ - <https://github.com/timsort/cpp-TimSort/blob/master/include/gfx/timsort.hpp>
-
-Oraz ograniczoną ilość dostępnej dokumentacji (zupełny brak źródeł w języku polskim), nie jestem w stanie stworzyć idealnej kopii samego algorytmu lecz jedynie uproszczoną wersję. \n Wynika z tego sporo skrótów oraz ograniczenia w optymalizacji. Niemniej jednak zachowuje ona główne założenia Tima Petersa.
-
-<hr>
-
-## 👨‍🎓 Autor
-
-**Krzysztof Pańtak, Informatyka Zaocznie 1 - 2020/2021 Grupa 11B**
+**Krzysztof Pańtak, Tomasz Natoniewski, Bartłomiej Mierzwa - Informatyka Zaocznie - 2021/2022 Grupa 11B**
