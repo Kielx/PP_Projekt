@@ -4,6 +4,7 @@
 #include "user.h"
 #include "main.h"
 #include "colors.h"
+#include "display.h"
 
 void menu(Pojazd *headPojazd, User *headUser)
 {
@@ -23,13 +24,13 @@ void menu(Pojazd *headPojazd, User *headUser)
         << COLOR_RESET << std::endl;
     std::cout << "1: Wypisz listę pojazdów\n";
     std::cout << "2: Wypisz listę użytkowników\n";
-    std::cout << "3: Dodaj pojazd\n";
-    std::cout << "4: Dodaj użytkownika\n";
-    std::cout << "5: Dodaj opis do pojazdu\n";
-    std::cout << "6: Wyswietl dane pojazdu\n";
+    std::cout << "3: Wyswietl dane pojazdu\n";
+    std::cout << "4: Wyswietl dane użytkownika\n";
+    std::cout << "5: Dodaj pojazd\n";
+    std::cout << "6: Dodaj użytkownika\n";
+    std::cout << "7: Dodaj opis do pojazdu\n";
     std::cout << "0: Opusc program\n";
     std::cin >> wybor;
-
     switch (wybor)
     {
 
@@ -52,35 +53,44 @@ void menu(Pojazd *headPojazd, User *headUser)
     case 3:
     {
       std::cout << CLEARSCREEN;
-      std::cout << COLOR_BOLDBLUE << "Wybrales 3 - Dodaj pojazd" << COLOR_RESET
+      std::cout << COLOR_BOLDBLUE << "Wybrales 3 - Wyswietl dane pojazdu" << COLOR_RESET
                 << std::endl;
-      addCar(&headPojazd);
+      wyswietlDanePojazdu(headPojazd);
       break;
     }
     case 4:
     {
       std::cout << CLEARSCREEN;
-      std::cout << COLOR_BOLDBLUE << "Wybrales 4 - Dodaj użytkownika" << COLOR_RESET
+      std::cout << COLOR_BOLDBLUE << "Wybrales 4 - Wyswietl dane użytkownika" << COLOR_RESET
                 << std::endl;
-      addUser(&headUser);
+      wyswietlDaneUzytkownika(headUser);
       break;
     }
     case 5:
     {
       std::cout << CLEARSCREEN;
-      std::cout << COLOR_BOLDBLUE << "Wybrales 5 - Dodaj opis" << COLOR_RESET
+      std::cout << COLOR_BOLDBLUE << "Wybrales 5 - Dodaj pojazd" << COLOR_RESET
                 << std::endl;
-      addOpis();
+      addCar(&headPojazd);
       break;
     }
     case 6:
     {
       std::cout << CLEARSCREEN;
-      std::cout << COLOR_BOLDBLUE << "Wybrales 6 - Wyswietl dane pojazdu" << COLOR_RESET
+      std::cout << COLOR_BOLDBLUE << "Wybrales 6 - Dodaj użytkownika" << COLOR_RESET
                 << std::endl;
-      wyswietlDanePojazdu(headPojazd);
+      addUser(&headUser);
       break;
     }
+    case 7:
+    {
+      std::cout << CLEARSCREEN;
+      std::cout << COLOR_BOLDBLUE << "Wybrales 7 - Dodaj wpis serwisowy pojazdu" << COLOR_RESET
+                << std::endl;
+      addOpis();
+      break;
+    }
+
     case 0:
     {
       std::cout << COLOR_BOLDBLUE << "Wybrales 0 - Opuszczam program. Dziekujemy za korzystanie." << std::endl;

@@ -11,20 +11,6 @@
  */
 
 /**
- * @brief Funkcja wypisuje zawartośc listy
- *
- * @param n - wskaznik na poczatek listy
- */
-void printList(Pojazd *n);
-
-/**
- * @brief Funkcja wypisuje na ekran liste uzytkownikow
- *
- * @param n - wskaznik na poczatek listy uzytkownikow
- */
-void printList(User *n);
-
-/**
  * @brief Funkcja dodaje pojazd i tworzy nowy plik z danymi
  *
  * @param head_ref - wskaznik na poczatek listy
@@ -81,13 +67,5 @@ void synchronizuj(std::string path, User **head);
  * @param head2 - wskaznik na poczatek listy pojazdow
  */
 void linkUsersToCars(User **head, Pojazd **head2);
-
-/**
- * @brief Funkcja ktora wypisuje informacje o pojezdzie
- *
- * @param head - wskaznik na poczatek listy pojazdow
- *
- */
-void wyswietlDanePojazdu(Pojazd *head);
 
 #endif
