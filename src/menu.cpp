@@ -5,6 +5,7 @@
 #include "main.h"
 #include "colors.h"
 #include "display.h"
+#include "delete.h"
 
 void menu(Pojazd *headPojazd, User *headUser)
 {
@@ -29,6 +30,7 @@ void menu(Pojazd *headPojazd, User *headUser)
     std::cout << "5: Dodaj pojazd\n";
     std::cout << "6: Dodaj użytkownika\n";
     std::cout << "7: Dodaj opis do pojazdu\n";
+    std::cout << "9: Usuń użytkownika\n";
     std::cout << "0: Opusc program\n";
     std::cin >> wybor;
     switch (wybor)
@@ -88,6 +90,14 @@ void menu(Pojazd *headPojazd, User *headUser)
       std::cout << COLOR_BOLDBLUE << "Wybrales 7 - Dodaj wpis serwisowy pojazdu" << COLOR_RESET
                 << std::endl;
       addOpis();
+      break;
+    }
+    case 9:
+    {
+      std::cout << CLEARSCREEN;
+      std::cout << COLOR_BOLDBLUE << "Wybrales 9 - Usuń użytkownika" << COLOR_RESET
+                << std::endl;
+      deleteUser(&headUser);
       break;
     }
 

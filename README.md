@@ -10,6 +10,7 @@ TODO:
 - ~~Compress archive with cars and users on exit~~
 - Add getline for better input
 - Add remove option
+- Fix bug with adding function and missing car
 
 
 ## ❔ O projekcie
