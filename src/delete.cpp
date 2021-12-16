@@ -28,9 +28,9 @@ void deleteUser(User **head)
       }
       delete current;
       if (remove(filename.c_str()) != 0)
-        perror("Error deleting file");
+        std::cout << "Wystąpił błąd podczas próby usunięcia pliku" << std::endl;
       else
-        puts("File successfully deleted");
+        std::cout << "Użytkownik został poprawnie usunięty z bazy" << std::endl;
       return;
     }
     previous = current;
