@@ -70,8 +70,9 @@ void addUser(User **head_ref)
   std::cin >> new_node->imie;
   std::cout << "Podaj nazwisko: ";
   std::cin >> new_node->nazwisko;
-  std::cout << "Podaj numer rejestracyjny pojazdu: ";
-  std::cin >> new_node->numerRejPojazdu;
+  /*   std::cout << "Podaj numer rejestracyjny pojazdu: ";
+    std::cin >> new_node->numerRejPojazdu; */
+  new_node->numerRejPojazdu = "brak";
   new_node->next = NULL;
   std::ofstream plik;
   plik.open("users/" + new_node->imie + "-" + new_node->nazwisko + ".txt");
@@ -88,17 +89,26 @@ void addOpis()
   std::string podpis;
   std::cout << "Podaj numer rejestracyjny pojazdu: ";
   std::cin >> numerRej;
-  std::cout << "Podaj opis: ";
-  std::getline(std::cin >> std::ws, opis);
-  std::cout << "Podaj podpis: ";
-  std::getline(std::cin >> std::ws, podpis);
+
   std::ofstream plik;
-  plik.open("pojazdy/" + numerRej + ".txt", std::ios::app);
-  plik
-      << "-" << std::endl
-      << opis << std::endl
-      << podpis << std::endl
-      << "---" << std::endl;
+  if (std::filesystem::exists("pojazdy/" + numerRej + ".txt"))
+  {
+    std::cout << "Podaj opis: ";
+    std::getline(std::cin >> std::ws, opis);
+    std::cout << "Podaj podpis: ";
+    std::getline(std::cin >> std::ws, podpis);
+    plik.open("pojazdy/" + numerRej + ".txt", std::ios::app);
+    plik
+        << "-" << std::endl
+        << opis << std::endl
+        << podpis << std::endl
+        << "---" << std::endl;
+    std::cout << "Poprawnie dodano wpis do pojazdu " << numerRej << std::endl;
+  }
+  else
+  {
+    std::cout << "Dodawanie wpisu nie powiodło się - Podany pojazd nie istnieje w bazie danych" << std::endl;
+  }
 }
 
 void listFiles(std::string path)
@@ -123,6 +133,7 @@ void listFiles(std::string path)
 
 void synchronizuj(std::string path, Pojazd **head)
 {
+  *head = NULL;
   std::array<std::string, 3> dane;
   for (const auto &entry : fs::directory_iterator(path))
   {
@@ -152,6 +163,7 @@ void synchronizuj(std::string path, Pojazd **head)
 
 void synchronizuj(std::string path, User **head)
 {
+  *head = NULL;
   std::array<std::string, 3> dane;
   for (const auto &entry : fs::directory_iterator(path))
   {
@@ -197,6 +209,34 @@ void linkUsersToCars(User **head, Pojazd **head2)
     tmp = tmp->next;
     tmp2 = *head2;
   }
+}
+
+void linkUserToCar()
+{
+  std::string numerRej;
+  std::string imie;
+  std::string nazwisko;
+  std::string line;
+  std::cout << "Podaj numer rejestracyjny pojazdu: ";
+  std::cin >> numerRej;
+  std::cout << "Podaj imie: ";
+  std::cin >> imie;
+  std::cout << "Podaj nazwisko: ";
+  std::cin >> nazwisko;
+  std::fstream plik;
+  plik.open("users/" + imie + "-" + nazwisko + ".txt");
+  if (plik.is_open())
+  {
+    plik << imie << std::endl
+         << nazwisko << std::endl
+         << numerRej << std::endl;
+  }
+  else
+  {
+    std::cout << "Nie udało się zapisać danych do pliku" << std::endl;
+  }
+
+  plik.close();
 }
 
 int main()

@@ -68,4 +68,12 @@ void synchronizuj(std::string path, User **head);
  */
 void linkUsersToCars(User **head, Pojazd **head2);
 
+/**
+ * @brief Funkcja łączy podanego użytkownika z pojazdem
+ *
+ * @param headPojazd - wkaznik na poczatek listy pojazdow
+ * @param headUser - wkaznik na poczatek listy uzytkownikow
+ */
+void linkUserToCar();
+
 #endif

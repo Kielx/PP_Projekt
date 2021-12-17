@@ -37,9 +37,16 @@ void printList(User *n)
     licznik++;
     std::cout << COLOR_BOLDWHITE "\t\t" << licznik << COLOR_RESET << std::endl;
     std::cout << "Imie i nazwisko: " << COLOR_BOLDWHITE << n->imie << " " << n->nazwisko << COLOR_RESET << std::endl;
-    std::cout << "Numer rejestracyjny pojazdu: " << COLOR_BOLDWHITE << n->numerRejPojazdu << COLOR_RESET << std::endl;
-    std::cout << "Typ pojazdu: " << COLOR_BOLDWHITE << n->pojazd->nazwa << COLOR_RESET << std::endl;
-    std::cout << "Rok produkcji: " << COLOR_BOLDWHITE << n->pojazd->rok << COLOR_RESET << std::endl;
+    if (n->pojazd)
+    {
+      std::cout << "Numer rejestracyjny pojazdu: " << COLOR_BOLDWHITE << n->numerRejPojazdu << COLOR_RESET << std::endl;
+      std::cout << "Typ pojazdu: " << COLOR_BOLDWHITE << n->pojazd->nazwa << COLOR_RESET << std::endl;
+      std::cout << "Rok produkcji: " << COLOR_BOLDWHITE << n->pojazd->rok << COLOR_RESET << std::endl;
+    }
+    else
+    {
+      std::cout << "Pojazd: " << COLOR_BOLDRED << "Brak" << COLOR_RESET << std::endl;
+    }
 
     std::cout << std::endl;
     n = n->next;

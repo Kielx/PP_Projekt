@@ -29,8 +29,10 @@ void menu(Pojazd *headPojazd, User *headUser)
     std::cout << "4: Wyswietl dane użytkownika\n";
     std::cout << "5: Dodaj pojazd\n";
     std::cout << "6: Dodaj użytkownika\n";
-    std::cout << "7: Dodaj opis do pojazdu\n";
-    std::cout << "9: Usuń użytkownika\n";
+    std::cout << "7: Połącz użytkownika z pojazdem\n";
+    std::cout << "8: Dodaj opis do pojazdu\n";
+    std::cout << "9: Usuń pojazd\n";
+    std::cout << "10: Usuń użytkownika\n";
     std::cout << "0: Opusc program\n";
     std::cin >> wybor;
     switch (wybor)
@@ -87,7 +89,15 @@ void menu(Pojazd *headPojazd, User *headUser)
     case 7:
     {
       std::cout << CLEARSCREEN;
-      std::cout << COLOR_BOLDBLUE << "Wybrales 7 - Dodaj wpis serwisowy pojazdu" << COLOR_RESET
+      std::cout << COLOR_BOLDBLUE << "Wybrales 7 - Połącz użytkownika z pojazdem" << COLOR_RESET
+                << std::endl;
+      linkUserToCar();
+      break;
+    }
+    case 8:
+    {
+      std::cout << CLEARSCREEN;
+      std::cout << COLOR_BOLDBLUE << "Wybrales 8 - Dodaj wpis serwisowy pojazdu" << COLOR_RESET
                 << std::endl;
       addOpis();
       break;
@@ -95,7 +105,15 @@ void menu(Pojazd *headPojazd, User *headUser)
     case 9:
     {
       std::cout << CLEARSCREEN;
-      std::cout << COLOR_BOLDBLUE << "Wybrales 9 - Usuń użytkownika" << COLOR_RESET
+      std::cout << COLOR_BOLDBLUE << "Wybrales 9 - Usuń pojazd" << COLOR_RESET
+                << std::endl;
+      deleteCar(&headPojazd);
+      break;
+    }
+    case 10:
+    {
+      std::cout << CLEARSCREEN;
+      std::cout << COLOR_BOLDBLUE << "Wybrales 10 - Usuń użytkownika" << COLOR_RESET
                 << std::endl;
       deleteUser(&headUser);
       break;
@@ -120,6 +138,9 @@ void menu(Pojazd *headPojazd, User *headUser)
       std::cin >> kontynuuj;
       wybor = (kontynuuj == "N" || kontynuuj == "n") ? 0 : 1;
       std::cout << CLEARSCREEN;
+      synchronizuj("pojazdy/", &headPojazd);
+      synchronizuj("users/", &headUser);
+
       linkUsersToCars(&headUser, &headPojazd);
     }
 
