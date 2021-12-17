@@ -2,6 +2,9 @@
 #include <fstream>
 #include <filesystem>
 #include <string.h>
+// Sleep dla niepoprawnych logowan
+#include <chrono>
+#include <thread>
 
 #include "login.h"
 #include "pojazd.h"
@@ -200,28 +203,43 @@ int main()
 {
   Pojazd *headPojazd = NULL;
   User *headUser = NULL;
-
-  if (login())
+  int failed = 0;
+  int success = 0;
+  std::string cont = "";
+  while (!strcmp(cont.c_str(), "n") == 0 && success == 0)
   {
-
-    if (strcmp(get_platform_name(), "linux") == 0 || strcmp(get_platform_name(), "windows") == 0)
+    if (login())
     {
-      system("tar -xzf data.tar.gz");
-      synchronizuj("pojazdy/", &headPojazd);
-      synchronizuj("users/", &headUser);
-      linkUsersToCars(&headUser, &headPojazd);
-      menu(headPojazd, headUser);
-      system("tar -czf data.tar.gz users pojazdy");
-      system("rm -r users pojazdy");
+      success++;
+      if (strcmp(get_platform_name(), "linux") == 0 || strcmp(get_platform_name(), "windows") == 0)
+      {
+        system("tar -xzf data.tar.gz");
+        synchronizuj("pojazdy/", &headPojazd);
+        synchronizuj("users/", &headUser);
+        linkUsersToCars(&headUser, &headPojazd);
+        menu(headPojazd, headUser);
+        system("tar -czf data.tar.gz users pojazdy");
+        system("rm -r users pojazdy");
+      }
+      else
+      {
+        std::cout << "Twój system nie obsługuje tej aplikacji" << std::endl;
+      }
     }
     else
     {
-      std::cout << "Twój system nie obsługuje tej aplikacji" << std::endl;
+      failed++;
+      std::cout << "Niepoprawne dane logowania" << std::endl;
+      if (failed % 3 == 0)
+      {
+        std::cout << "Zbyt wiele nieprawidłowych prób logowania, upewnij się, że klawisz Caps-Lock jest wyłączony i spróbuj ponownie za chwilę" << std::endl;
+        std::chrono::milliseconds timespan(5000);
+        std::this_thread::sleep_for(timespan);
+      }
+      std::cout << "Czy chcesz spróbować ponownie? (t/n) ";
+      std::cin >> cont;
     }
   }
-  else
-  {
-    std::cout << "Niepoprawne dane logowania" << std::endl;
-  }
+
   return 0;
 }
