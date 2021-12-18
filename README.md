@@ -9,7 +9,7 @@ TODO:
 - ~~Decompress archive with cars and users on start~~
 - ~~Compress archive with cars and users on exit~~
 - Add getline for better input
-- Add remove option
+- ~~Add remove option~~
 - Fix bug with adding function and missing car
 
 
