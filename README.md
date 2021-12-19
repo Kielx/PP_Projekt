@@ -11,6 +11,7 @@ TODO:
 - Add getline for better input
 - ~~Add remove option~~
 - Fix bug with adding function and missing car
+- Update docs
 
 
 ## ❔ O projekcie
@@ -23,6 +24,7 @@ Struktury te wczytywane są na podstawie danych z plików w folderach pojazdy i 
 Program jest wyposażony w rozmaite funkcje związane z obsługa bazy danych: <br>
 ☑️ - Pozwala na podstawowe operacje na bazie danych - dodawanie, usuwanie, wyswietlanie i aktualizowanie danych <br>
 ☑️ - Dostęp do programu jest ograniczony dla zalogowanych użytkowników, których dane są zaszyfrowane <br>
+☑️ - Dostęp jest chroniony przed metodą brute-force poprzez usypianie aplikacji po trzech nieudanych próbach logowania na określony czas <br>
 ☑️ - Zapisuje i odczytuje dane z plikow <br>
 ☑️ - Synchronizuje odczytane dane <br>
 ☑️ - Przechowuje baze danych w archiwum tar.gz poprzez odczyt i zapis na poczatku i końcu programu<br>
