@@ -27,7 +27,7 @@ void menu(Pojazd *headPojazd, User *headUser)
     std::cout << "2: Wypisz listę użytkowników\n";
     std::cout << "3: Wyswietl dane pojazdu\n";
     std::cout << "4: Wyswietl dane użytkownika\n";
-    std::cout << "5: Dodaj pojazd\n";
+    std::cout << "5: Dodaj/Edytuj pojazd\n";
     std::cout << "6: Dodaj użytkownika\n";
     std::cout << "7: Połącz użytkownika z pojazdem\n";
     std::cout << "8: Dodaj opis do pojazdu\n";
