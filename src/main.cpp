@@ -86,11 +86,27 @@ void addUser(User **head_ref)
 {
   User *new_node = new User;
   std::cout << "Podaj imie: ";
-  std::cin >> new_node->imie;
+  std::getline(std::cin >> std::ws, new_node->imie);
+  // Sprawdzamy, czy wprowadzone imie jest poprawne
+  // Jeśli zawiera spacje, to zwracamy odpowiedni komunikat
+  if (std::cin.fail() || new_node->imie.find(' ') != std::string::npos)
+  {
+    std::cin.clear();
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    std::cout << "Podano niepoprawne imię, nie może ono zawierać spacji. Jeśli Twoje imię jest dwuczłonowe, połącz je za pomocą znaku '-'\n";
+    return;
+  }
   std::cout << "Podaj nazwisko: ";
-  std::cin >> new_node->nazwisko;
-  /*   std::cout << "Podaj numer rejestracyjny pojazdu: ";
-    std::cin >> new_node->numerRejPojazdu; */
+  std::getline(std::cin >> std::ws, new_node->nazwisko);
+  // Sprawdzamy, czy wprowadzone imie jest poprawne
+  // Jeśli zawiera spacje, to zwracamy odpowiedni komunikat
+  if (std::cin.fail() || new_node->nazwisko.find(' ') != std::string::npos)
+  {
+    std::cin.clear();
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    std::cout << "Podano niepoprawne nazwisko, nie może ono zawierać spacji. Jeśli Twoje nazwisko jest dwuczłonowe, połącz je za pomocą znaku '-'\n";
+    return;
+  }
   new_node->numerRejPojazdu = "brak";
   new_node->next = NULL;
   std::ofstream plik;
@@ -249,6 +265,7 @@ void linkUserToCar()
     plik << imie << std::endl
          << nazwisko << std::endl
          << numerRej << std::endl;
+    std::cout << "Poprawnie zapisano dane" << std::endl;
   }
   else
   {
