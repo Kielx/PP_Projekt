@@ -20,6 +20,7 @@ void printList(Pojazd *n)
     std::cout << "Numer rejestracyjny: " << COLOR_BOLDWHITE << n->numerRej << COLOR_RESET << std::endl;
     std::cout << "Typ: " << COLOR_BOLDWHITE << n->nazwa << COLOR_RESET << std::endl;
     std::cout << "Rok produkcji: " << COLOR_BOLDWHITE << n->rok << COLOR_RESET << std::endl;
+    std::cout << "Przebieg: " << COLOR_BOLDWHITE << n->przebieg << COLOR_RESET << std::endl;
     n->user ? std::cout << "Właściciel: " << COLOR_BOLDWHITE << n->user->imie << " " << n->user->nazwisko << COLOR_RESET << std::endl : std::cout << "Właściciel: " << COLOR_BOLDRED << "Brak" << COLOR_RESET << std::endl;
     std::cout << std::endl;
     n = n->next;

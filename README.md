@@ -4,14 +4,15 @@ TODO:
 
 - ~~Clean up display functions to display data in some nicer way~~
 - ~~Display owner data in car list~~
-- Check how program responds to different data
-- Add mileage field to car
+- ~~Check how program responds to different data~~
+- ~~Add mileage field to car~~
 - ~~Decompress archive with cars and users on start~~
 - ~~Compress archive with cars and users on exit~~
-- Add getline for better input
+- ~~Add getline for better input~~
 - ~~Add remove option~~
-- Fix bug with adding function and missing car
+- ~~Fix bug with adding function and missing car~~
 - Update docs
+- Add admin function to menu entries
 
 
 ## ❔ O projekcie

@@ -73,12 +73,25 @@ void addCar(Pojazd **head_ref)
     std::cout << "Podano niepoprawny rok produkcji.\n";
     return;
   }
+
+  std::cout << "Podaj przebieg pojazdu: ";
+  std::cin >> new_node->przebieg;
+  // Sprawdzamy, czy wprowadzony przebieg jest poprawny
+  if (std::cin.fail())
+  {
+    std::cin.clear();
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    std::cout << "Podano nieprawidłowy przebieg pojazdu.\n";
+    return;
+  }
+
   new_node->next = NULL;
   std::ofstream plik;
   plik.open("pojazdy/" + new_node->numerRej + ".txt");
   plik << new_node->numerRej << std::endl
        << new_node->nazwa << std::endl
-       << new_node->rok << std::endl;
+       << new_node->rok << std::endl
+       << new_node->przebieg << std::endl;
   push(head_ref, new_node);
 }
 
@@ -117,11 +130,23 @@ void addUser(User **head_ref)
   push(head_ref, new_node);
 }
 
+std::fstream &GotoLine(std::fstream &file, int num)
+{
+  file.seekg(std::ios::beg);
+  for (int i = 0; i < num - 1; ++i)
+  {
+    file.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+  }
+  return file;
+}
+
 void addOpis()
 {
   std::string numerRej;
   std::string opis;
   std::string podpis;
+  unsigned int przebieg;
+  std::string data;
   std::cout << "Podaj numer rejestracyjny pojazdu: ";
   std::cin >> numerRej;
 
@@ -130,15 +155,27 @@ void addOpis()
   {
     std::cout << "Podaj opis: ";
     std::getline(std::cin >> std::ws, opis);
+    std::cout << "Podaj datę wpisu: ";
+    std::getline(std::cin >> std::ws, data);
+    std::cout << "Podaj aktualny przebieg: ";
+    std::cin >> przebieg;
     std::cout << "Podaj podpis: ";
     std::getline(std::cin >> std::ws, podpis);
     plik.open("pojazdy/" + numerRej + ".txt", std::ios::app);
     plik
         << "-" << std::endl
-        << opis << std::endl
-        << podpis << std::endl
+        << "opis:" << opis << std::endl
+        << "data:" << data << std::endl
+        << "przebieg:" << przebieg << std::endl
+        << "podpis:" << podpis << std::endl
         << "---" << std::endl;
     std::cout << "Poprawnie dodano wpis do pojazdu " << numerRej << std::endl;
+    // Zmieniamy przebieg pojazdu w pliku
+    std::fstream plik("pojazdy/" + numerRej + ".txt");
+    GotoLine(plik, 4);
+    plik << przebieg << std::endl;
+
+    plik.close();
   }
   else
   {
@@ -169,7 +206,7 @@ void listFiles(std::string path)
 void synchronizuj(std::string path, Pojazd **head)
 {
   *head = NULL;
-  std::array<std::string, 3> dane;
+  std::array<std::string, 4> dane;
   for (const auto &entry : fs::directory_iterator(path))
   {
 
@@ -177,7 +214,7 @@ void synchronizuj(std::string path, Pojazd **head)
     std::ifstream myfile(entry.path());
     if (myfile.is_open())
     {
-      for (int i = 0; i < 3; i++)
+      for (int i = 0; i < 4; i++)
       {
         getline(myfile, line);
         dane.at(i) = line;
@@ -192,6 +229,7 @@ void synchronizuj(std::string path, Pojazd **head)
     nowy->numerRej = dane.at(0);
     nowy->nazwa = dane.at(1);
     nowy->rok = std::stoi(dane.at(2));
+    nowy->przebieg = std::stoi(dane.at(3));
     push(head, nowy);
   }
 }
