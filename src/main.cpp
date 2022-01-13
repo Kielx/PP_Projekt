@@ -5,6 +5,8 @@
 // Sleep dla niepoprawnych logowan
 #include <chrono>
 #include <thread>
+// Weryfikacja wprowadzanych danych
+#include <limits>
 
 #include "login.h"
 #include "pojazd.h"
@@ -43,17 +45,34 @@ void push(User **head_ref, User *user)
   user->next = (*head_ref);
   (*head_ref) = user;
 }
-
-// TODO: Change input to getline to avoid bugs with spaces
 void addCar(Pojazd **head_ref)
 {
+
   Pojazd *new_node = new Pojazd;
   std::cout << "Podaj numer rejestracyjny: ";
-  std::cin >> new_node->numerRej;
+  std::getline(std::cin >> std::ws, new_node->numerRej);
+  // Sprawdzamy, czy wprowadzony numer jest poprawny
+  // Jeśli zawiera spacje, to zwracamy odpowiedni komunikat
+  if (std::cin.fail() || new_node->numerRej.find(' ') != std::string::npos)
+  {
+    std::cin.clear();
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    std::cout << "Niepoprawny numer rejestracyjny. Numer nie może zawierać spacji.\n";
+    return;
+  }
+
   std::cout << "Podaj nazwe: ";
   std::getline(std::cin >> std::ws, new_node->nazwa);
   std::cout << "Podaj rok: ";
   std::cin >> new_node->rok;
+  // Sprawdzamy, czy wprowadzony rok jest poprawny
+  if (std::cin.fail())
+  {
+    std::cin.clear();
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    std::cout << "Podano niepoprawny rok produkcji.\n";
+    return;
+  }
   new_node->next = NULL;
   std::ofstream plik;
   plik.open("pojazdy/" + new_node->numerRej + ".txt");
