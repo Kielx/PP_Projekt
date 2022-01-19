@@ -14,7 +14,6 @@ TODO:
 - Update docs
 - Add admin function to menu entries
 
-
 ## ❔ O projekcie
 
 Projekt ma prezentować działanie bazy danych warsztatu samochodowego w oparciu o dwie struktury listy jednokierunkowej.
@@ -32,14 +31,6 @@ Program jest wyposażony w rozmaite funkcje związane z obsługa bazy danych: <b
 <br>
 
 ![Przyklad dzialania programu](../../img/Demo1.gif)
-
-#### 👨‍💻 Timsort
-
-To hybrydowy stabilny algorytm sortowania, wywodzący się z sortowania przez scalanie i sortowania przez wstawianie, zaprojektowany tak, aby dobrze działał na wielu rodzajach rzeczywistych danych. Został zaimplementowany przez Tima Petersa w 2002 roku do użytku w języku programowania Python. Algorytm wyszukuje podciągi danych, które są już uporządkowane (uruchomione) i wykorzystuje je do efektywniejszego sortowania pozostałych. Odbywa się to poprzez scalanie przebiegów, dopóki nie zostaną spełnione określone kryteria. Timsort jest standardowym algorytmem sortowania Pythona od wersji 2.3. Służy również do sortowania tablic typu nieprymitywnego w Javie SE 7, na platformie Android, w GNU Octave, na Chromium V8, Swift i Rust.
-
-#### 🏎️ Quicksort – sortowanie szybkie
-
-To algorytm sortowania działający w średnim przypadku w czasie liniowo-logarytmicznym. Algorytm jest oparty na metodzie dziel i zwyciężaj. Nie jest to algorytm stabilny ani wykazujący zachowanie naturalne, jednak ze względu na efektywność jest algorytmem bardzo popularnym.
 
 <hr>
 
@@ -92,7 +83,7 @@ Uruchamiamy program:
 make run
 ```
 
-Postepujemy zgodnie z instrukcjami na ekranie. \n Brawo - Twoja tablica jest posortowana.
+Postepujemy zgodnie z instrukcjami na ekranie. Program jest gotowy do użycia.
 
 ![Kobieta cieszaca sie z sukcesu](https://media.giphy.com/media/kefB3xhgryQnpdhtw5/giphy.gif)
 
