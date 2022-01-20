@@ -1,19 +1,5 @@
 # ❕ Baza danych warsztatu samochodowego {#mainpage}
 
-TODO:
-
-- ~~Clean up display functions to display data in some nicer way~~
-- ~~Display owner data in car list~~
-- ~~Check how program responds to different data~~
-- ~~Add mileage field to car~~
-- ~~Decompress archive with cars and users on start~~
-- ~~Compress archive with cars and users on exit~~
-- ~~Add getline for better input~~
-- ~~Add remove option~~
-- ~~Fix bug with adding function and missing car~~
-- Update docs
-- Add admin function to menu entries
-
 ## ❔ O projekcie
 
 Projekt ma prezentować działanie bazy danych warsztatu samochodowego w oparciu o dwie struktury listy jednokierunkowej.

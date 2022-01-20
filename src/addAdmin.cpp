@@ -19,4 +19,7 @@ void addAdmin()
   plik
       << std::endl
       << encrypt(username, random) << ";" << random << ";" << encrypt(password, random);
+  plik.close();
+
+  std::cout << "Dodano administratora do bazy danych!" << std::endl;
 }
