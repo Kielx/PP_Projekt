@@ -28,6 +28,8 @@ Program jest wyposażony w rozmaite funkcje związane z obsługa bazy danych: <b
 ☑️ - Zapisuje i odczytuje dane z plikow <br>
 ☑️ - Synchronizuje odczytane dane <br>
 ☑️ - Przechowuje baze danych w archiwum tar.gz poprzez odczyt i zapis na poczatku i końcu programu<br>
+☑️ - Dokumentacja programu generowana przez Doxygen<br>
+
 <br>
 
 ![Przyklad dzialania programu](../../img/Demo1.gif)
