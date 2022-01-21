@@ -32,8 +32,6 @@ Projekt został wykonany całkowicie w języku C++.
 
 Poniższe instrukcje dotyczą systemu Ubuntu w wersji 20.04, jednak powinny zadziałać także na innych systemach unixowych pod warunkiem zainstalowania wcześniej kompilatora.
 
-![Okno konsoli pokazujace interaktywnie kroki niezbedne do skompilowania i uruchomienia programu](../../img/uruchamianie.gif)
-
 ### 🔧 Uruchamianie programu
 
 Instalujemy kompilator g++
