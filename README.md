@@ -111,6 +111,3 @@ make clean
 
 <hr>
 
-## 👨‍🎓 Autorzy
-
-**Krzysztof Pańtak, Tomasz Natoniewski, Bartłomiej Mierzwa - Informatyka Zaocznie - 2021/2022 Grupa 11B**
