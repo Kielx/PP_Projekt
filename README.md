@@ -18,7 +18,7 @@ Program jest wyposażony w rozmaite funkcje związane z obsługa bazy danych: <b
 
 <br>
 
-![Przyklad dzialania programu](https://raw.githubusercontent/Kielx/PP_Projekt/master/img/Demo1.gif)
+![Przyklad dzialania programu](https://github.com/Kielx/PP_Projekt/raw/master/img/Demo1.gif)
 
 <hr>
 
